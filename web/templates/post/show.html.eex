@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <img src="\<%= Tumblr.ImageUploader.url(@post.image)  %>" class="customImg" alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h2><%= @post.title %></h2>
+    </div>
+
+    <div class="col-md-12">
+      <p><%= @post.description %></p>
+    </div>
+    <div class="col-md-3">
+      <%= link "Back", to: post_path(@conn, :index) %>
+    </div>
+  </div>
+</div>
+
+
+
+<%= link "<", to: post_path(@conn, :show, @post.id - 1) %>
+
+<%= link ">", to: post_path(@conn, :show, @post.id + 1) %>
+
+
+
+
+
+
+<!--
+
+<h2>Show Post</h2>
+
+<ul>
+
+  <li>
+    <strong>Title</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Description</strong>
+    <%= @post.description %>
+  </li>
+
+  <li>
+    <img src="\<%= Tumblr.ImageUploader.url(@post.image)  %>" class="customImg" alt="">
+  </li>
+
+</ul>
+
+
+<%= link "Back", to: post_path(@conn, :index) %>
+
+
+
+-->

@@ -1,0 +1,2 @@
+404
+<%= link "Back", to: post_path(@conn, :index) %>
