@@ -5,7 +5,7 @@ defmodule Tumblr.PostController do
   alias Tumblr.Repo
 
   def index(conn, _params) do
-    posts = Repo.all(Post)
+    posts = Repo.all(from x in Tumblr.Post, order_by: [desc: x.id])
     render(conn, "index.html", posts: posts )
   end
 
