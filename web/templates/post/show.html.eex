@@ -18,11 +18,17 @@
   </div>
 </div>
 
-
-
+<%= if @leftCaret !=  false do %>
 <%= link "<", to: post_path(@conn, :show, @post.id - 1) %>
+<%= end %>
 
+<%= if @rightCaret !=  false do %>
 <%= link ">", to: post_path(@conn, :show, @post.id + 1) %>
+<%= end %>
+
+
+
+
 
 
 

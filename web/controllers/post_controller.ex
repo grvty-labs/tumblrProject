@@ -30,32 +30,38 @@ defmodule Tumblr.PostController do
 
   def show(conn, %{"id" => id}) do
 
-    most_recent = Repo.one(from x in Tumblr.Post, order_by: [desc: x.id], limit: 1)
+    # Id current post
     change_id = String.to_integer id
 
+    # Get last entry in the database
+    most_recent = Repo.one(from x in Tumblr.Post, order_by: [desc: x.id], limit: 1)
     most_recent_id = most_recent.id
 
-
-
+    # Get first entry in the database
     first_element_in_table = Repo.one(from x in Tumblr.Post, order_by: [asc: x.id], limit: 1)
     first_element_in_table_id = first_element_in_table.id
-    IO.inspect first_element_in_table_id
 
-    if change_id < first_element_in_table_id do
-      IO.inspect "es mas pequeno"
-      render(conn, "404.html")
+    # Just trying things haha
+    previous_id = change_id - 1
+    next_id = change_id + 1
+    IO.inspect previous_id
+    IO.inspect next_id
+
+
+
+    if previous_id < first_element_in_table_id do
+      leftCaret = false
+      IO.inspect "oli Left"
     end
 
-
-
-    if change_id > most_recent_id do
-      IO.inspect "es mas grande"
-      render(conn, "404.html")
+    if next_id > most_recent_id do
+      rightCaret = false
+      IO.inspect "oli Right"
     end
 
-
+    # Get all info from the post
     post = Repo.get!(Post, id)
-    render(conn, "show.html", post: post)
+    render(conn, "show.html", post: post, leftCaret: leftCaret, rightCaret: rightCaret)
   end
 
   def next(conn, %{"id" => id}) do
