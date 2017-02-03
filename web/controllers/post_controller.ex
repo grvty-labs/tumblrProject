@@ -64,6 +64,7 @@ defmodule Tumblr.PostController do
     render(conn, "show.html", post: post, leftCaret: leftCaret, rightCaret: rightCaret)
   end
 
+  # Just testing
   def next(conn, %{"id" => id}) do
     test = String.to_integer(id) + 1
     render(conn, "testing.html", test: test)

@@ -12,6 +12,16 @@
     <div class="col-md-12">
       <p><%= @post.description %></p>
     </div>
+
+    <%= if @post.code != nil do %>
+      <link rel="stylesheet" href="\<%= Tumblr.ImageUploader.url(@post.css)  %>">
+      <div id="app"></div>
+      <script src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
+      <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+      <script type="text/javascript" src="\<%= Tumblr.ImageUploader.url(@post.code)  %>"></script>
+
+    <% end %>
+
     <div class="col-md-3">
       <%= link "Back", to: post_path(@conn, :index) %>
     </div>
@@ -20,11 +30,11 @@
 
 <%= if @leftCaret !=  false do %>
 <%= link "<", to: post_path(@conn, :show, @post.id - 1) %>
-<%= end %>
+<% end %>
 
 <%= if @rightCaret !=  false do %>
 <%= link ">", to: post_path(@conn, :show, @post.id + 1) %>
-<%= end %>
+<% end %>
 
 
 
